@@ -1,0 +1,19 @@
+Anotações curso Udemy - SpringBoot
+
+° Projeto Sistema de pedidos [backEnd]
+Api Rest Java +JPA
+Hibernate + MySQL + Spring Security
+JWT + GMail + Amazon S3
+Publicação : Heroku
+
+° Projeto Sistema de Pedidos [FrontEnd]
+App Híbrido Ionic (Angular / TypeScript) 
++ Cordova
+Publicação: Play Store
+
+° WorkShop SpringBoot com Java e MongoDB
+
+
+
+
+
