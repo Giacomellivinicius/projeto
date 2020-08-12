@@ -1,4 +1,0 @@
-uso de tecnologias como: Maven, Apache, MySQL, 
-Versionamento com GIT
-Framework Spring
-IDE - Eclipse-NetBeans-
