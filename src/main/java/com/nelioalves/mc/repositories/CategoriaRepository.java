@@ -5,14 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import com.nelioalves.mc.domain.Categoria;
 
-@Repository
 //JpaRepository<tipo, tipo do atributo identificador>
+@Repository
 public interface CategoriaRepository extends JpaRepository<Categoria,Integer>{
 
-	
-	
-	
-	
-	
-	
+
 }
+
+

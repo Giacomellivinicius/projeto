@@ -1,11 +1,14 @@
 package com.nelioalves.mc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -22,9 +25,13 @@ public class Categoria implements Serializable{
 	 em conformidade com o banco relacional utilizado
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//Sem ;
 	private Integer id;
 	private String nome;
+	
+	@ManyToMany(mappedBy = "categorias")
+	private List<Produto> produtos = new ArrayList<>();
+	
 	
 	public Categoria() {
 		
@@ -37,6 +44,23 @@ public class Categoria implements Serializable{
 		this.nome = nome;
 	}
 
+	//Teste de setProduto com técnica diferente
+	public void setProdutos(Produto produto) {
+		produtos.add(produto);
+	}
+	/*
+	 Em caso de falha, o método usado foi:
+	  public void setProdutos(List<Produto> produtos){
+	  	this.produtos = produtos;
+	  }
+	 */
+	
+	public List<Produto> getProdutos(){
+		return produtos;
+	}
+	
+	
+	
 
 	public Integer getId() {
 		return id;
