@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 
 @Entity
@@ -28,6 +30,7 @@ public class Produto implements Serializable{
 	private double preco;
 	
 	
+	@JsonBackReference
 	@ManyToMany
 	//@jointable mapeia a tabela a ser criada na junção 
 	//enquanto JoinColumn define a chave estrangeira

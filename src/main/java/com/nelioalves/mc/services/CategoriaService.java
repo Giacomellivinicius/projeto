@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.nelioalves.mc.domain.Categoria;
 import com.nelioalves.mc.repositories.CategoriaRepository;
+import com.nelioalves.mc.services.exception.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -16,13 +17,14 @@ public class CategoriaService {
 	//automaticamente instanciada pelo spring
 	private CategoriaRepository repo ;
 	
-	public Categoria buscar(Integer id) {
+	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
 		//Método .findById() herdado da classe JpaRepository
 		//Substitui o antigo método .findOne()
-		return obj.orElse(null);
-		
-	}
+		return obj.orElseThrow(()-> new ObjectNotFoundException(
+				"Objeto não encontrado! id: "+id+", Tipo: "
+				+Categoria.class.getName()));
+			}
 	
 	
 	
