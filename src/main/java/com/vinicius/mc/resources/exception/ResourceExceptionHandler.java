@@ -1,4 +1,4 @@
-package com.nelioalves.mc.resources.exception;
+package com.vinicius.mc.resources.exception;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.nelioalves.mc.services.exception.ObjectNotFoundException;
+import com.vinicius.mc.services.exception.ObjectNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {

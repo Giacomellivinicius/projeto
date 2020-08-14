@@ -1,4 +1,4 @@
-package com.nelioalves.mc.resources;
+package com.vinicius.mc.resources;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nelioalves.mc.domain.Categoria;
-import com.nelioalves.mc.services.CategoriaService;
+import com.vinicius.mc.domain.Categoria;
+import com.vinicius.mc.services.CategoriaService;
 
 @RestController
 @RequestMapping(value="/categorias")

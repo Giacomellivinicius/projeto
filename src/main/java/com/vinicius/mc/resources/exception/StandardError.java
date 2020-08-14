@@ -1,4 +1,4 @@
-package com.nelioalves.mc.resources.exception;
+package com.vinicius.mc.resources.exception;
 
 import java.io.Serializable;
 

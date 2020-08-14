@@ -1,4 +1,4 @@
-package com.nelioalves.mc.domain;
+package com.vinicius.mc.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;

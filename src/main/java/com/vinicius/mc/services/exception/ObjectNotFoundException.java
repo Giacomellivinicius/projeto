@@ -1,4 +1,4 @@
-package com.nelioalves.mc.services.exception;
+package com.vinicius.mc.services.exception;
 
 public class ObjectNotFoundException extends RuntimeException{
 

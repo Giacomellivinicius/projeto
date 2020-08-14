@@ -1,4 +1,4 @@
-package com.nelioalves.mc;
+package com.vinicius.mc;
 
 import java.util.Arrays;
 
@@ -7,10 +7,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.nelioalves.mc.domain.Categoria;
-import com.nelioalves.mc.domain.Produto;
-import com.nelioalves.mc.repositories.CategoriaRepository;
-import com.nelioalves.mc.repositories.ProdutoRepository;
+import com.vinicius.mc.domain.Categoria;
+import com.vinicius.mc.domain.Produto;
+import com.vinicius.mc.repositories.CategoriaRepository;
+import com.vinicius.mc.repositories.ProdutoRepository;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
