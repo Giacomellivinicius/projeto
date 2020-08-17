@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.vinicius.mc.domain.Categoria;
 import com.vinicius.mc.domain.Cidade;
+import com.vinicius.mc.domain.Cliente;
+import com.vinicius.mc.domain.Endereco;
 import com.vinicius.mc.domain.Estado;
 import com.vinicius.mc.domain.Produto;
+import com.vinicius.mc.domain.enums.TipoCliente;
 import com.vinicius.mc.repositories.CategoriaRepository;
 import com.vinicius.mc.repositories.CidadeRepository;
+import com.vinicius.mc.repositories.ClienteRepository;
+import com.vinicius.mc.repositories.EnderecoRepository;
 import com.vinicius.mc.repositories.EstadoRepository;
 import com.vinicius.mc.repositories.ProdutoRepository;
 
@@ -27,23 +32,31 @@ public class CursomcApplication implements CommandLineRunner {
 	private EstadoRepository estadoRepository;
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	@Autowired
+	private ClienteRepository clienteRepository;
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	
 	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
 	}
 
-	//Método herdado da interface CommandLineRunner
+	//Método run() herdado da interface CommandLineRunner
 	@Override 
 	public void run(String... args)throws Exception{
+		//Adição de categorias
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório"); 
 		
-		
+		//Adição de produtos
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 800.00);
 		Produto p3 = new Produto(null, "Mouse", 80.00);
 		
+		//Salvando categorias e produtos
+		//Arrays.asList() cria uma lista automaticamente
 		cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3));
 		cat2.getProdutos().addAll(Arrays.asList(p2));
 		
@@ -52,12 +65,11 @@ public class CursomcApplication implements CommandLineRunner {
 		p3.getCategorias().addAll(Arrays.asList(cat1));
 		
 		
-		//Arrays.asList() cria uma lista automaticamente
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 	
 
-	
+		//criando estados e cidades
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "São Paulo");
 		
@@ -65,13 +77,32 @@ public class CursomcApplication implements CommandLineRunner {
 		Cidade c2 = new Cidade(null, "São Paulo", est2);
 		Cidade c3 = new Cidade(null, "Campinas", est2);
 	
-		
+		//salvando estados e cidades
 		est1.getCidades().addAll(Arrays.asList(c1));
 		est2.getCidades().addAll(Arrays.asList(c2,c3));
 		
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 	
+		//criando clientes 
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("27363323","93838393"));
+		
+		
+		Endereco e1 = new Endereco(null,"Rua Flores", "300", "Apto 203", "Jardim","38220834",cli1,c1);
+		Endereco e2 = new Endereco(null,"Avenida Matos", "105","Sala 800", "Centro","38777012",cli1,c2);
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
+		
+		//O CLiente deve ser salvo primeiro por ser independente
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1,e2));
+		
+		
+		
+		
+		
+		
 	}
 	
 	
