@@ -27,10 +27,12 @@ public class CategoriaResource {
 	//ResponseEntity -> encapsula/armazena informações de 
 	//uma resposta http para um serviço REST 
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id ) {
+	public ResponseEntity<Categoria> find(@PathVariable Integer id ) {
 		Categoria obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
+	
+	//Método INSERT -> insere categoria através do metodo POST
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Categoria obj){
@@ -42,7 +44,13 @@ public class CategoriaResource {
 	}
 	
 	
-	
+	//Método UPDATE -> altera o nome de uma categoria já existente
+	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id){
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
+	}
 	
 	
 	

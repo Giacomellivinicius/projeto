@@ -26,7 +26,7 @@ public class PedidoResource {
 	//ResponseEntity -> encapsula/armazena informações de 
 	//uma resposta http para um serviço REST 
 	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id ) {
+	public ResponseEntity<Pedido> find(@PathVariable Integer id ) {
 		Pedido obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 		
