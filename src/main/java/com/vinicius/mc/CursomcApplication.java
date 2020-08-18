@@ -13,6 +13,7 @@ import com.vinicius.mc.domain.Cidade;
 import com.vinicius.mc.domain.Cliente;
 import com.vinicius.mc.domain.Endereco;
 import com.vinicius.mc.domain.Estado;
+import com.vinicius.mc.domain.ItemPedido;
 import com.vinicius.mc.domain.Pagamento;
 import com.vinicius.mc.domain.PagamentoComBoleto;
 import com.vinicius.mc.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.vinicius.mc.repositories.CidadeRepository;
 import com.vinicius.mc.repositories.ClienteRepository;
 import com.vinicius.mc.repositories.EnderecoRepository;
 import com.vinicius.mc.repositories.EstadoRepository;
+import com.vinicius.mc.repositories.ItemPedidoRepository;
 import com.vinicius.mc.repositories.PagamentoRepository;
 import com.vinicius.mc.repositories.PedidoRepository;
 import com.vinicius.mc.repositories.ProdutoRepository;
@@ -48,6 +50,8 @@ public class CursomcApplication implements CommandLineRunner {
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	
 	
@@ -124,6 +128,24 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));
+		
+		ItemPedido ip1 = new ItemPedido(ped1,p1, 0.00, 1, 2000.0);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2,80.00);
+		ItemPedido ip3 = new ItemPedido(ped2,p2, 100.0,1,800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
+		
+		
+		
+		
+		
 		
 	}
 	
