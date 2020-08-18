@@ -34,7 +34,7 @@ public class Produto implements Serializable{
 	private double preco;
 	
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany
 	//@jointable mapeia a tabela a ser criada na junção 
 	//enquanto JoinColumn define a chave estrangeira
