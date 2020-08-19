@@ -2,6 +2,10 @@ package com.vinicius.mc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.vinicius.mc.domain.Categoria;
 
 public class CategoriaDTO implements Serializable{
@@ -9,7 +13,12 @@ public class CategoriaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	
+	@NotNull(message="Preenchimento Obrigatório")
+	@Length(min=5, max=80, message="O nome deve conter entre 5 e 80 caracteres")
 	private String nome;
+	
+	
 	
 	//Construtores
 	
