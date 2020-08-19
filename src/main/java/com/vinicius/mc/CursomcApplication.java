@@ -60,11 +60,24 @@ public class CursomcApplication implements CommandLineRunner {
 	}
 
 	//Método run() herdado da interface CommandLineRunner
+	//Arrays.asList() cria uma lista automaticamente
+	
 	@Override 
 	public void run(String... args)throws Exception{
 		//Adição de categorias
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório"); 
+		Categoria cat3 = new Categoria(null, "Cama,Mesa e Banho");
+		Categoria cat4 = new Categoria(null, "Eletrônicos");
+		Categoria cat5 = new Categoria(null, "Jardinagem");
+		Categoria cat6 = new Categoria(null, "Perfumaria");
+		Categoria cat7 = new Categoria(null, "Livros");
+		Categoria cat8 = new Categoria(null, "Decoração"); 
+		 
+		
+		
+		
+		
 		
 		//Adição de produtos
 		Produto p1 = new Produto(null, "Computador", 2000.00);
@@ -72,7 +85,8 @@ public class CursomcApplication implements CommandLineRunner {
 		Produto p3 = new Produto(null, "Mouse", 80.00);
 		
 		//Salvando categorias e produtos
-		//Arrays.asList() cria uma lista automaticamente
+		
+		
 		cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3));
 		cat2.getProdutos().addAll(Arrays.asList(p2));
 		
@@ -81,7 +95,7 @@ public class CursomcApplication implements CommandLineRunner {
 		p3.getCategorias().addAll(Arrays.asList(cat1));
 		
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5,cat6,cat7,cat8));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 	
 
