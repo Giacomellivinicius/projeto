@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -35,7 +36,7 @@ public class Cliente implements Serializable {
 	
 	
 
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
 	private List <Endereco> enderecos = new ArrayList<>();
 
 	@ElementCollection //Cria tabela auxiliar da entidade fraca
@@ -50,6 +51,7 @@ public class Cliente implements Serializable {
 	
 	
 	//Construtores
+	
 	public Cliente() {}
 	
 	//!Lembrar de não colocar coleções em construtores
