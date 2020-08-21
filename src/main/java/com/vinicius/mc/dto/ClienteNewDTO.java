@@ -2,21 +2,46 @@ package com.vinicius.mc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.vinicius.mc.services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteNewDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min=5,max=80, message="O nome deve conter entre 5 e 80 caracteres")
 	private String nome;
+	
+	@NotEmpty(message="É necessário informar um e-mail válido para se cadastrar")
+	@Email(message="Email Inválido")
 	private String email;
+	
+	@NotEmpty
+	
 	private String cpfOuCnpj;
+	
 	private Integer tipo;
 	
+	@NotEmpty
 	private String logradouro;
+	
+	@NotEmpty
 	private String numero;
+	
 	private String complemento;
+	
 	private String bairro;
+	
+	@NotEmpty
 	private String cep;
 	
+	@NotEmpty
 	private String telefone1;
 	private String telefone2;
 	private String telefone3;
