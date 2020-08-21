@@ -10,6 +10,7 @@ import com.vinicius.mc.domain.Endereco;
 public interface EnderecoRepository extends JpaRepository<Endereco,Integer>{
 
 
+
 }
 
 
