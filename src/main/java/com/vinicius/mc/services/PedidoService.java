@@ -1,12 +1,19 @@
 package com.vinicius.mc.services;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vinicius.mc.domain.ItemPedido;
+import com.vinicius.mc.domain.PagamentoComBoleto;
 import com.vinicius.mc.domain.Pedido;
+import com.vinicius.mc.domain.enums.EstadoPagamento;
+import com.vinicius.mc.repositories.ItemPedidoRepository;
+import com.vinicius.mc.repositories.PagamentoRepository;
 import com.vinicius.mc.repositories.PedidoRepository;
+import com.vinicius.mc.repositories.ProdutoRepository;
 import com.vinicius.mc.services.exception.ObjectNotFoundException;
 
 @Service
@@ -17,6 +24,18 @@ public class PedidoService {
 	//automaticamente instanciada pelo spring
 	private PedidoRepository repo ;
 	
+	@Autowired
+	private BoletoService boletoService;
+	
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ProdutoService produtoService;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
+	
 	public Pedido find(Integer id) {
 		Optional<Pedido> obj = repo.findById(id);
 		//Método .findById() herdado da classe JpaRepository
@@ -25,6 +44,31 @@ public class PedidoService {
 				"Objeto não encontrado! id: "+id+", Tipo: "
 				+Pedido.class.getName()));
 			}
+	
+	public Pedido insert(Pedido obj) {
+		obj.setId(null);
+		obj.setInstante(new Date());
+		obj.getPagamento().setEstado(EstadoPagamento.PENDENTE);
+		obj.getPagamento().setPedido(obj);
+		if(obj.getPagamento() instanceof PagamentoComBoleto) {
+			PagamentoComBoleto pagto = (PagamentoComBoleto) obj.getPagamento();
+			boletoService.preencherPagamentoComBoleto(pagto,obj.getInstante());
+		}
+		obj = repo.save(obj);
+		pagamentoRepository.save(obj.getPagamento());
+		
+		for (ItemPedido ip: obj.getItens()) {
+			ip.setDesconto(0.0);
+			ip.setPreco(produtoService.find(ip.getProduto().getId()).getPreco());
+			ip.setPedido(obj);
+		}
+		itemPedidoRepository.saveAll(obj.getItens());
+		return obj;
+		
+	}
+	
+	
+	
 	
 	
 	
