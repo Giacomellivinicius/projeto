@@ -56,15 +56,22 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 
-		<!--Novas dependências hibernate para @NotEmpty -->		
-		
+		<!-- Dependências banco de dados mysql -->
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!--Novas dependências hibernate para @NotEmpty -->
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.0.1.Final</version>
 		</dependency>
 
-		
+
 
 	</dependencies>
 
