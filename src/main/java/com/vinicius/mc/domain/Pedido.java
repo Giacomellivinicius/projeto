@@ -1,8 +1,11 @@
 package com.vinicius.mc.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -104,7 +107,8 @@ public class Pedido implements Serializable{
 	public Cliente getCliente() {
 		return cliente;
 	}
-
+	
+	
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
@@ -144,6 +148,29 @@ public class Pedido implements Serializable{
 		return true;
 	}
 	
-	
+	//toString
+	//Esse método é procurado pelo System.out.print
+	public String toString() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt","BR"));
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido nº: ");
+		builder.append(getId());
+		builder.append(", Data e Hora: ");
+		builder.append(sdf.format(getInstante()));
+		builder.append(", Cliente: ");
+		builder.append(getCliente().getNome());
+		builder.append(", Status de Pagamento: ");
+		builder.append(getPagamento().getEstado().getDescricao());
+		builder.append("\nDetalhes do pedido: \n");
+		for(ItemPedido ip:getItens()) {
+			builder.append(ip.toString());
+		}
+		builder.append("\nValor Total: ");
+		builder.append(nf.format(getValorTotal()));
+		return builder.toString();
+		
+		
+	}
 	
 }
