@@ -8,8 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.vinicius.mc.services.DBService;
+<<<<<<< HEAD
 import com.vinicius.mc.services.EmailService;
 import com.vinicius.mc.services.MockEmailService;
+=======
+>>>>>>> 4e104d9691e03ebae799a5570871c14b91288ea1
 
 @Configuration
 @Profile("test")
@@ -25,10 +28,14 @@ public class TestConfig {
 		return true;
 	}
 	
+<<<<<<< HEAD
 	@Bean 
 	public EmailService emailService() {
 		return new MockEmailService();
 	}
+=======
+	
+>>>>>>> 4e104d9691e03ebae799a5570871c14b91288ea1
 	
 	
 }

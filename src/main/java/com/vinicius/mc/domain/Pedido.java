@@ -18,8 +18,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+<<<<<<< HEAD
 import org.springframework.transaction.annotation.Transactional;
 
+=======
+>>>>>>> 4e104d9691e03ebae799a5570871c14b91288ea1
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -152,7 +155,10 @@ public class Pedido implements Serializable{
 	
 	//toString
 	//Esse método é procurado pelo System.out.print
+<<<<<<< HEAD
 	@Transactional
+=======
+>>>>>>> 4e104d9691e03ebae799a5570871c14b91288ea1
 	public String toString() {
 		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt","BR"));
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

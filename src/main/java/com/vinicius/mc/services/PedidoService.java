@@ -39,9 +39,12 @@ public class PedidoService {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 	
+<<<<<<< HEAD
 	@Autowired
 	private EmailService emailService;
 	
+=======
+>>>>>>> 4e104d9691e03ebae799a5570871c14b91288ea1
 	public Pedido find(Integer id) {
 		Optional<Pedido> obj = repo.findById(id);
 		//Método .findById() herdado da classe JpaRepository
@@ -71,7 +74,11 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
+<<<<<<< HEAD
 		emailService.sendOrderConfirmationEmail(obj);
+=======
+		System.out.println(obj);
+>>>>>>> 4e104d9691e03ebae799a5570871c14b91288ea1
 		return obj;
 		
 	}
