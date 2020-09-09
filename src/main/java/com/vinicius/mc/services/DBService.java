@@ -20,6 +20,7 @@ import com.vinicius.mc.domain.PagamentoComCartao;
 import com.vinicius.mc.domain.Pedido;
 import com.vinicius.mc.domain.Produto;
 import com.vinicius.mc.domain.enums.EstadoPagamento;
+import com.vinicius.mc.domain.enums.Perfil;
 import com.vinicius.mc.domain.enums.TipoCliente;
 import com.vinicius.mc.repositories.CategoriaRepository;
 import com.vinicius.mc.repositories.CidadeRepository;
@@ -131,15 +132,22 @@ public class DBService {
 		Cliente cli1 = new Cliente(null, "Maria Silva", "webdesigner.vinicius@outlook.com", "36378912377", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("27363323","93838393"));
 		
+		Cliente cli2 = new Cliente(null,"Vinicius Giacomelli","giacomelli.vinicius@gmail.com","91651893020",TipoCliente.PESSOAFISICA,pe.encode("123"));
+		cli2.getTelefones().addAll(Arrays.asList("999224455","35830000"));
+		cli2.addPerfil(Perfil.ADMIN);
 		
 		Endereco e1 = new Endereco(null,"Rua Flores", "300", "Apto 203", "Jardim","38220834",cli1,c1);
 		Endereco e2 = new Endereco(null,"Avenida Matos", "105","Sala 800", "Centro","38777012",cli1,c2);
+		Endereco e3 = new Endereco(null,"Avenida Jurubeba","123",null,"Jardim Suspenso","21045678",cli2,c2);
+		
 		
 		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
+		cli2.getEnderecos().addAll(Arrays.asList(e3));
+		
 		
 		//O CLiente deve ser salvo primeiro por ser independente
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1,e2));
+		clienteRepository.saveAll(Arrays.asList(cli1,cli2));
+		enderecoRepository.saveAll(Arrays.asList(e1,e2,e3));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"),cli1, e1);
