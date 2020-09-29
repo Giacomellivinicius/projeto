@@ -15,12 +15,15 @@ import org.springframework.stereotype.Service;
 import com.vinicius.mc.domain.Cidade;
 import com.vinicius.mc.domain.Cliente;
 import com.vinicius.mc.domain.Endereco;
+import com.vinicius.mc.domain.enums.Perfil;
 import com.vinicius.mc.domain.enums.TipoCliente;
 import com.vinicius.mc.dto.ClienteDTO;
 import com.vinicius.mc.dto.ClienteNewDTO;
 import com.vinicius.mc.repositories.CidadeRepository;
 import com.vinicius.mc.repositories.ClienteRepository;
 import com.vinicius.mc.repositories.EnderecoRepository;
+import com.vinicius.mc.security.UserSS;
+import com.vinicius.mc.services.exception.AuthorizationException;
 import com.vinicius.mc.services.exception.DataIntegrityException;
 import com.vinicius.mc.services.exception.ObjectNotFoundException;
 
@@ -40,6 +43,12 @@ public class ClienteService {
 
 	
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		if(user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso Negado");
+		}
+		
 		Optional<Cliente> obj = repo.findById(id);
 		//Método .findById() herdado da classe JpaRepository
 		//Substitui o antigo método .findOne()
