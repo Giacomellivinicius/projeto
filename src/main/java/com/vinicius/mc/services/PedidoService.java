@@ -4,8 +4,12 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.vinicius.mc.domain.Cliente;
 import com.vinicius.mc.domain.ItemPedido;
 import com.vinicius.mc.domain.PagamentoComBoleto;
 import com.vinicius.mc.domain.Pedido;
@@ -13,7 +17,8 @@ import com.vinicius.mc.domain.enums.EstadoPagamento;
 import com.vinicius.mc.repositories.ItemPedidoRepository;
 import com.vinicius.mc.repositories.PagamentoRepository;
 import com.vinicius.mc.repositories.PedidoRepository;
-import com.vinicius.mc.repositories.ProdutoRepository;
+import com.vinicius.mc.security.UserSS;
+import com.vinicius.mc.services.exception.AuthorizationException;
 import com.vinicius.mc.services.exception.ObjectNotFoundException;
 
 @Service
@@ -81,8 +86,15 @@ public class PedidoService {
 		
 	}
 	
-	
-	
+	public Page<Pedido> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		UserSS user = UserService.authenticated();
+		if (user == null) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		Cliente cliente =  clienteService.find(user.getId());
+		return repo.findByCliente(cliente, pageRequest);
+	}
 	
 	
 	
