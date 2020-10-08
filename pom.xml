@@ -101,7 +101,7 @@
 		</dependency>
 
 		<!-- Dependências Amazon Web Sevice S3 -->
-		
+
 		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk</artifactId>
@@ -111,6 +111,14 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>LATEST</version>
+		</dependency>
+
+		<!-- Escala da imagem -->
+		
+		<dependency>
+			<groupId>org.imgscalr</groupId>
+			<artifactId>imgscalr-lib</artifactId>
+			<version>4.2</version>
 		</dependency>
 
 	</dependencies>
