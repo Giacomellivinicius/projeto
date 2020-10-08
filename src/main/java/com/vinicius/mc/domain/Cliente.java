@@ -56,7 +56,7 @@ public class Cliente implements Serializable {
 	@OneToMany(mappedBy="cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 	
-	
+	private String imageUrl;
 	
 	//Construtores
 	
@@ -159,7 +159,13 @@ public class Cliente implements Serializable {
 		this.enderecos = enderecos;
 	}
 	
-	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 	
 	
 	//Hashcode e Equals
@@ -188,6 +194,8 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
+
+
 	
 	
 	
