@@ -34,7 +34,8 @@ public class ClienteResource {
 	
 	
 	
-	/*@PAthVariable -> mostra onde o /{id} deve ser colocado
+	/*--ANOTAÇÕES--
+	 * @PAthVariable -> mostra onde o /{id} deve ser colocado
 	  ResponseEntity -> encapsula/armazena informações de 
 	  uma resposta http para um serviço REST */
 	
